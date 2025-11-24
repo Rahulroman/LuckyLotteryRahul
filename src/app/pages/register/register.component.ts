@@ -18,16 +18,16 @@ constructor (private router : Router , private ApiCallService : ApiCallService){
 
 
 user: User = {
-  username: '',
-  email: '',
+  userName: '',
+  emailId: '',
   password : ''
 };
 
   onSubmit(){
 
- this.ApiCallService.post("register" , this.user).subscribe({
+ this.ApiCallService.post("AddNewUser" , this.user).subscribe({
 next  : (res) => {
-  console.log("dashboard");
+  console.log("dashboard" , res.message);
 },
 error: (err) => {
 
