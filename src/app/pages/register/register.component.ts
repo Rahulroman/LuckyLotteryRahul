@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiCallService } from '../../services/api-call.service';
-import { User } from '../../model/register';
+import { User } from '../../model/UserModels';
 
 @Component({
   selector: 'app-register',
@@ -14,27 +14,29 @@ import { User } from '../../model/register';
 export class RegisterComponent {
 constructor (private router : Router , private ApiCallService : ApiCallService){}
 
-// user = {
-//   email: "",
-//   password: "123",
-//   username: "admin",
-//   errorMessage: "",
-//   successMessage: ""
-// };
+  goToLogin(){ this.router.navigate(["/login"]); }
 
-user : User =new  User();
 
-onSubmit(){
+user: User = {
+  username: '',
+  email: '',
+  password : ''
+};
 
-console.log("component" + this.user);
+  onSubmit(){
 
- var result  = this.ApiCallService.post_api(this.user);
- console.log(result);
+ this.ApiCallService.post("register" , this.user).subscribe({
+next  : (res) => {
+  console.log("dashboard");
+},
+error: (err) => {
+
+  console.log("error in registration" , err);
 }
 
-  goToLogin(){
-
-    this.router.navigate(["/login"]);
+ })
 
   }
+
+
 }
