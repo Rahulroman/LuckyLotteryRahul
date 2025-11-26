@@ -9,7 +9,7 @@ export class ApiCallService {
 
 constructor(private http: HttpClient){}
 
-baseUrl : string = "https://api.freeprojectapi.com/api/BusBooking/";
+baseUrl : string = "http://localhost:5281/api/Auth/";
 
 post(endpoint: string , body: any): Observable<any> {
   console.log(endpoint , body );

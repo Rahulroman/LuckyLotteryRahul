@@ -4,10 +4,10 @@
 
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label>Name</label>
+      <label>Full Name</label>
       <input
         type="text"
-       [(ngModel)]="user.userName"
+       [(ngModel)]="user.Username"
         name="name"
         required
       />
@@ -16,10 +16,18 @@
     <div class="form-group">
       <label>Email</label>
       <input
-        type="email"
-        [(ngModel)]="user.emailId"
+        type="text"
+        [(ngModel)]="user.Email"
         name="email"
         required
+      />
+    </div>
+    <div class="form-group">
+      <label>Mobile No</label>
+      <input 
+      type="text"
+      [(ngModel)]="user.Mobile"
+      required
       />
     </div>
 
@@ -27,7 +35,7 @@
       <label>Password</label>
       <input
         type="password"
-       [(ngModel)]="user.password"
+       [(ngModel)]="user.PasswordHash"
         name="password"
         required
       />

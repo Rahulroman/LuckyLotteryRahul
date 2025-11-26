@@ -12,29 +12,32 @@ import { User } from '../../model/UserModels';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-constructor (private router : Router , private ApiCallService : ApiCallService){}
+  constructor(private router: Router, private ApiCallService: ApiCallService) { }
 
-  goToLogin(){ this.router.navigate(["/login"]); }
+  goToLogin() { this.router.navigate(["/login"]); }
 
 
-user: User = {
-  userName: '',
-  emailId: '',
-  password : ''
-};
+  user: User = {
+    Username: '',
+    Email: '',
+    PasswordHash: '',
+    Mobile: ''
+  };
 
-  onSubmit(){
+  onSubmit() {
 
- this.ApiCallService.post("AddNewUser" , this.user).subscribe({
-next  : (res) => {
-  console.log("dashboard" , res.message);
-},
-error: (err) => {
+    this.ApiCallService.post("register", this.user).subscribe({
+      next: (res) => {
+        if (res?.response) {
+          alert("user add successfully");
+          this.router.navigate(["/dashboard"]);
+        }
+      },
+      error: (err) => {
+        alert("error in registration");
+      }
 
-  console.log("error in registration" , err);
-}
-
- })
+    });
 
   }
 
